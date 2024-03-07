@@ -45,7 +45,6 @@ class FrontendOrder extends Model
         'total'            => 'decimal:6',
         'order_type'       => 'integer',
         'order_datetime'   => 'datetime',
-        'delivery_time'    => 'string',
         'preparation_time' => 'integer',
         'is_advance_order' => 'integer',
         'payment_method'   => 'integer',
