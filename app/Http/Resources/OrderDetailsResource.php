@@ -23,7 +23,7 @@ class OrderDetailsResource extends JsonResource
             "subtotal_currency_price"             => AppLibrary::currencyAmountFormat($this->subtotal),
             "subtotal_without_tax_currency_price" => AppLibrary::currencyAmountFormat($this->subtotal - $this->total_tax),
             "discount_currency_price"             => AppLibrary::currencyAmountFormat($this->discount),
-            "delivery_charge_currency_price"      => AppLibrary::currencyAmountFormat($this->delivery_charge),
+            "delivery_charge_currency_price"      => AppLibrary::currencyAmountFormat(0),
             "total_currency_price"                => AppLibrary::currencyAmountFormat($this->total),
             "total_tax_currency_price"            => AppLibrary::currencyAmountFormat($this->total_tax),
             'order_type'                          => $this->order_type,
@@ -38,13 +38,13 @@ class OrderDetailsResource extends JsonResource
             'status'                              => $this->status,
             'status_name'                         => trans('orderStatus.' . $this->status),
             'reason'                              => $this->reason,
+            'order_items'                         => OrderItemResource::collection($this->orderItems),
             'user'                                => new UserResource($this->user),
             'order_address'                       => new AddressResource($this->address),
             'branch'                              => new BranchResource($this->branch),
             'delivery_boy'                        => new UserResource($this->deliveryBoy),
             'coupon'                              => new CouponResource($this->coupon),
             'transaction'                         => new TransactionResource($this->transaction),
-            'order_items'                         => OrderItemResource::collection($this->orderItems),
             'table_name'                          => $this->diningTable?->name,
         ];
     }
