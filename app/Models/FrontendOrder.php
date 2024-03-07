@@ -23,7 +23,6 @@ class FrontendOrder extends Model
         'total',
         'order_type',
         'order_datetime',
-        'delivery_time',
         'preparation_time',
         'is_advance_order',
         'address',
