@@ -79,7 +79,8 @@ class ItemService
     {
         try {
             DB::transaction(function () use ($request) {
-                $this->item = Item::create($request->validated() + ['slug' => Str::slug($request->name)]);
+                $this->item = Item::create($request->validated() + ['slug' => Str::slug($request->name)] + ['free_adons_limit' => $request->free_adons_limit]);
+                
                 if ($request->image) {
                     $this->item->addMedia($request->image)->toMediaCollection('item');
                 }

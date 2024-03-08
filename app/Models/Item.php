@@ -28,6 +28,7 @@ class Item extends Model implements HasMedia
         'caution',
         'status',
         'order',
+        'free_adons_limit',
     ];
     protected $dates = ['deleted_at'];
     protected $casts = [
@@ -39,6 +40,7 @@ class Item extends Model implements HasMedia
         'item_type'        => 'integer',
         'price'            => 'decimal:6',
         'is_featured'      => 'integer',
+        'free_adons_limit' => 'integer',
         'description'      => 'string',
         'caution'          => 'string',
         'status'           => 'integer',

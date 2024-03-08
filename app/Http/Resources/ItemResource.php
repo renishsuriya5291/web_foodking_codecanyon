@@ -31,6 +31,7 @@ class ItemResource extends JsonResource
             "price"            => $this->price,
             "item_type"        => $this->item_type,
             "is_featured"      => $this->is_featured,
+            "free_adons_limit" => $this->free_adons_limit,
             "status"           => $this->status,
             "description"      => $this->description === null ? '' : $this->description,
             "caution"          => $this->caution === null ? '' : $this->caution,

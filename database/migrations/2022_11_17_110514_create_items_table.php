@@ -28,6 +28,7 @@ return new class extends Migration
             $table->tinyInteger('status')->default(\App\Enums\Status::ACTIVE)->comment(\App\Enums\Status::ACTIVE . '=' . trans('statuse.' . \App\Enums\Status::ACTIVE) . ', ' . \App\Enums\Status::INACTIVE . '=' . trans('statuse.' . \App\Enums\Status::INACTIVE));
             $table->tinyInteger('item_type')->default(ItemType::VEG);
             $table->bigInteger('order')->default(1);
+            $table->integer('free_adons_limit')->nullable()->default(5);
             $table->tinyInteger('is_featured')->default(Ask::YES);
             $table->string('creator_type',)->nullable();
             $table->bigInteger('creator_id',)->nullable();

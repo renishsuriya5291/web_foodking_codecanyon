@@ -46,11 +46,29 @@
                     </div>
 
                     <div class="form-col-12 sm:form-col-6">
+                        <label for="freeAdonsLimit" class="db-field-title">
+                        {{ $t("label.free_adons_limit") }}
+                        </label>
+                        <input
+                        v-model="props.form.free_adons_limit"
+                        type="number"
+                        id="freeAdonsLimit"
+                        class="db-field-control"
+                        />
+                        <!-- Display validation errors if any -->
+                        <small class="db-field-alert" v-if="errors.free_adons_limit">
+                        {{ errors.free_adons_limit[0] }}
+                        </small>
+                    </div>
+
+                    <div class="form-col-12 sm:form-col-6">
                         <label class="db-field-title">{{ $t("label.image") }}</label>
                         <input @change="changeImage" v-bind:class="errors.image ? 'invalid' : ''" id="image" type="file"
                             class="db-field-control" ref="imageProperty" accept="image/png, image/jpeg, image/jpg">
                         <small class="db-field-alert" v-if="errors.image">{{ errors.image[0] }}</small>
                     </div>
+
+                    
 
                     <div class="form-col-12 sm:form-col-6">
                         <label class="db-field-title" for="veg">{{ $t("label.item_type") }}</label>
@@ -234,6 +252,7 @@ export default {
                 item_category_id: null,
                 tax_id: null,
                 status: statusEnum.ACTIVE,
+                free_adons_limit: 0, 
             };
             if (this.image) {
                 this.image = "";
@@ -241,6 +260,7 @@ export default {
             }
         },
         save: function () {
+            console.log('Free Adons Limit:', this.props.form.free_adons_limit);
             try {
                 const fd = new FormData();
                 fd.append('name', this.props.form.name);
@@ -249,10 +269,13 @@ export default {
                 fd.append('tax_id', this.props.form.tax_id == null ? '' : this.props.form.tax_id);
                 fd.append('item_type', this.props.form.item_type);
                 fd.append('is_featured', this.props.form.is_featured);
+                fd.append("free_adons_limit", this.props.form.free_adons_limit); // Add this line
                 fd.append('description', this.props.form.description);
                 fd.append('caution', this.props.form.caution);
                 fd.append('order', 1);
                 fd.append('status', this.props.form.status);
+                console.log('FormData:', fd);
+
                 if (this.image) {
                     fd.append('image', this.image);
                 }
@@ -275,6 +298,7 @@ export default {
                         item_category_id: null,
                         tax_id: null,
                         status: statusEnum.ACTIVE,
+                        free_adons_limit: 0,
                     };
                     this.image = "";
                     this.errors = {};
